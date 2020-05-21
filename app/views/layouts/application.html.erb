@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <head>
+    <meta charset="utf-8">
     <title>ReportApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,6 +12,23 @@
   </head>
 
   <body>
+    <header>
+      <div class="container">
+        <div class="row justify-content-end btns">
+          <% if logged_in? %>
+            <% unless request.path == root_path || request.path == users_path %>
+              <span><%= link_to "マイページ", root_path, class: "btn btn-outline-info mypage_btn" %></span>
+            <% end %>
+            <span><%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-outline-danger logout_btn" %></span>
+          <% end %>
+        </div>
+      </div>
+    </header>
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
     <%= yield %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   </body>
 </html>

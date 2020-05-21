@@ -1,0 +1,18 @@
+<div class="container login_container">
+	<h1 class="session-title">日報週報管理</h1>
+	<%= form_for :session, url: login_path, class: 'login_form' do |f| %>
+		<div class="form_group">
+			<%= f.text_field :name, class: 'col-md-5 input-group-text name_feild', id: "inputGroup-sizing-lg", maxlength: 10, placeholder: "名前", pattern: "^[a-z0-9]+$", title:"半角英数字で入力して下さい" %>
+		</div>
+
+		<div class="form_group">
+			<%= f.password_field :password, class:'col-md-5 input-group-text password_feild', id: "inputGroup-sizing-lg", maxlength: 10, placeholder: "パスワード", pattern: "^[a-z0-9]+$", title:"半角英数字で入力して下さい" %>
+		</div>
+
+		<div class="form_group">
+			<%= f.submit 'ログイン', class: 'btn btn-primary login_btn' %>
+		</div>
+	<% end %>
+  <hr>
+	<p class="to_signup">登録をまだしていない場合は <%= link_to '新規登録', '/signup',class: 'signup_link' %> してください</p>
+</div>

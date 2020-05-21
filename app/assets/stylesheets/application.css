@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+ body{font-family: "Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;}
+.logout_btn, .mypage_btn{margin: 1.5rem 0 1.5rem 1rem;}
+textarea{resize: vertical;}
+div{border-radius: 10px;}
+.row{padding: 0 1rem;}
+h1{padding: 0 1rem;}

@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <h1><%= @user.name %>のページ</h1>
+    <% if current_user.admin_flag == true %>
+      <%= form_with url: users_update_path, local: true, class: "change_admin_flag" do |f| %>
+        <%= f.select :admin_flag, [['一般ユーザー', false],['管理者', true]], selected: @user.admin_flag %>
+        <%= f.hidden_field :user_id, :value => @user.id %>
+        <%= f.submit "切替", class: "btn btn-primary", name: nil %>
+      <% end %>
+    <% end %>
+  </div>
+  <%= render 'users/other_user'%>
+</div>

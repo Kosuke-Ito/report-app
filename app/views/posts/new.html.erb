@@ -1,0 +1,16 @@
+<div class="container">
+	<h1>投稿作成画面</h1>
+	<h2><%= Date.today.strftime('%Y年%m月%d日') %>の投稿を作成する</h2>
+
+	<%= form_for (@post) do |f| %>
+    <%= f.select :date_type, [['ALL', 0],['WEEKLY', 1]], {}, class:"col-md-2 mb-3 mt-4 input-group-text create_date_type_box" %>
+
+		<%= f.text_field :title, class:'col-md-9 input-group-text create_title_field', maxlength:50, placeholder:"タイトル" %>
+
+		<%= f.text_area :content, class:'col-md-9 input-group-text create_content_field', maxlength:10000, placeholder:"本文" %>
+
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+
+		<%= f.submit '投稿する', class: 'col-md-2 offset-md-7 btn btn-outline-info create_post_btn' %>
+	<% end %>
+</div>
