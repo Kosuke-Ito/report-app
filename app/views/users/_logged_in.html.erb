@@ -1,0 +1,63 @@
+  <div class="row">
+    <div class="col-md-9 left_column">
+      <div class="row">
+        <div class="col-md-3">
+          <h2 class="all_post">投稿一覧</h2>
+          <%= form_with url: users_path, method: :get, local: true, class: "change_date_type" do |f| %>
+            <%= f.select :date_type, [['全て', 0],['週報', 1]], selected: params[:date_type] %>
+            <%= f.submit "切替", class: "btn btn-primary", name: nil %>
+          <% end %>
+        </div>
+        <% if current_user.admin_flag == true %>
+          <%= form_with url: users_search_path, method: :get, class: "user_search_form col-md-5 offset-md-1" do |f| %>
+            <%= f.text_field :name, placeholder: "ユーザー検索", class: "user_search_field", maximum:10, pattern: "^[a-z]+$", title:"半角英数字で入力して下さい"  %>
+            <%= f.submit "検索", class: "btn btn-primary", name: nil %>
+            <span class="result"></span>
+          <% end %>
+        <% end %>
+        <%= link_to "新規投稿作成", new_post_path, class: "col-md-2 justify-content-end btn btn-outline-info create_btn " %>
+      </div>
+      <% if @posts.present? %>
+        <% @posts.reverse.each do |p|  %>
+          <div class="mono_post">
+            <%= link_to post_path(p) do %>
+              <div class="row justify-content-between">
+                <span class="post-date .col-auto .mr-auto" style="color:gray"><%= p.created_at.strftime('%Y/%m/%d') %></span>
+                <% if p.status == 0 %>
+                  <span class="col-md-2 bg-info text-white post-status text-center">承認待ち</span>
+                <% elsif p.status == 1 %>
+                  <span class="col-md-2 bg-success text-white post-status text-center">公開</span>
+                <% else %>
+                  <span class="col-md-2 bg-danger text-white post-status text-center">却下</span>
+                <% end %>
+              </div>
+              <h5 class="post-title" style="color:gray"><%= p.title %></h5>
+              <%= link_to "編集", edit_post_path(p), class: "col-2 offset-10 btn btn-outline-info edit-btn" %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+
+    <div class="col-md-3">
+      <% if current_user.admin_flag == true %>
+        <div class="admin_label">管理者</div>
+      <% end %>
+
+      <% if current_user.subordinate_id.present? %>
+        <div class="subordinate_box">
+          後輩一覧
+          <div class="subordinate_names">
+            <% @subordinate.each do |i|%>
+              <%= link_to i.name, "/users/#{i.id}", style:"display: block;" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+  <script>
+    window.document.form.select.option.selected = true;
+  </script>

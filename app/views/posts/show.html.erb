@@ -1,0 +1,31 @@
+<div class="container">
+  <%= link_to "＜　一覧に戻る", "/users/#{@user.id}", class: "btn btn-outline-primary back_btn" %>
+  <div class="row">
+    <h1><%= @user.name %>の<%=  @post.created_at.strftime('%Y/%m/%d')  %>の投稿</h1>
+    <% if current_user.id == @user.boss_id %>
+      <%= form_with url: '/posts/update_post_status', local: true, class: "change_post_status col-md-4 offset-md-2" do |f| %>
+        <%= f.select :status, [['承認待ち', 0],['公開', 1],['却下', 2]], selected: @post.status %>
+        <%= f.submit "変更", class: "btn btn-primary", name: nil %>
+        <%= f.hidden_field :id, :value => @post.id %>
+      <% end %>
+    <% end %>
+  </div>
+  <p class="post_content"><%= @post.content %></p>
+  <h2>コメント一覧</h2>
+  <% @post.comments.each do |c| %>
+    <div class="mono_comment">
+      <span><%= c.user.name %></span>：<span class="comment_content"><%= c.content %></span>
+    </div>
+  <% end %>
+  <%= form_for :comment, url:comments_path do |f| %>
+    <div class="form_group">
+      <%= f.text_field :content, class:'col-md-6 input-group-text comment_field', placeholder: "コメントを入力してください", maxlength: 500 %>
+    </div>
+
+    <%= f.hidden_field :post_id, :value => @post.id %>
+
+    <div class="form_group">
+      <%= f.submit 'コメント作成', class: 'offset-md-4 btn btn-outline-info create_comment_btn' %>
+    </div>
+  <% end %>
+</div>
