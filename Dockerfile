@@ -15,9 +15,6 @@ RUN apt-get update \
 && apt-get update \
 && apt-get install -y yarn
 
-# Node.jsをインストール
-RUN curl -sL https://deb.nodesource.com/setup_7.x | bash - \
-&& apt-get install nodejs
 
 RUN mkdir /report_app
 WORKDIR /report_app
