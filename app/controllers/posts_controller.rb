@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to root_path
     else
-      redirect_to new_post_path
+      render :new
     end
   end
 
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to "/posts/#{@post.id}"
     else
-      redirect_to edit_post
+      render :edit
     end
   end
 

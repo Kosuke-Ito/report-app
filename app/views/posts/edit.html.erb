@@ -1,10 +1,14 @@
 <div class="container">
 	<h1>投稿編集画面</h1>
+
 	<div class="post_date">
 		<%= @post.created_at.strftime('%Y/%m/%d') %>の投稿を編集する
 	</div>
 
 	<%= form_for (@post) do |f| %>
+    <%= render 'shared/post_error_messages', object: f.object %>
+    <%= f.select :date_type, [['ALL', false],['WEEKLY', true]], {selected: @post.date_type}, class:"col-md-2 mb-3 mt-4 input-group-text create_date_type_box" %>
+
 		<div class="form_group">
 			<%= f.label :title, 'タイトル', class:'title_label' %>
 			<%= f.text_field :title, class:'col-md-10 input-group-text title_feild', maxlength:50 %>

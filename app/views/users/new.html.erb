@@ -2,7 +2,7 @@
   <h1>新規登録</h1>
   <div class="row signup_form">
     <%= form_for(@user) do |f| %>
-  	 <%= render 'shared/error_messages'%>
+  	 <%= render 'shared/error_messages', object: f.object %>
 
      <p style="font-weight:bold;">半角英数字だけ使用して入力してください</p>
      <%= f.text_field :name, class: 'input-group-text name_field', maxlength: 10, placeholder: "名前", pattern: "^[a-z0-9]+$", title:"半角英数字で入力して下さい" %>

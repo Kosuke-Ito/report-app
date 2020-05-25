@@ -12,7 +12,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    if params[:date_type] == "1"
+      @posts = @user.posts.where(date_type: 1)
+    else
+      @posts = @user.posts
+    end
     @boss = User.find_by(id: @user.boss_id) if @user.boss_id.present?
     @subordinate = User.where(id: @user.subordinate_id) if @user.subordinate_id.present?
   end
@@ -39,12 +43,11 @@ class UsersController < ApplicationController
       user.boss_id = boss.id
       boss.subordinate_id = user.id
       boss.save
-      user.save
     end
     if params[:admin_flag].present?
-      user.admin_flag = params[:admin_flag]
-      user.save
+      user.admin_flag = ActiveRecord::Type::Boolean.new.cast(params[:admin_flag])
     end
+    user.save
     redirect_to "/users/#{user.id}"
   end
 

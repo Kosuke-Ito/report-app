@@ -1,6 +1,10 @@
 <div class="row">
   <div class="col-md-9">
     <h2>投稿一覧</h2>
+    <%= form_with action: :show, method: :get, local: true, class: "change_date_type" do |f| %>
+      <%= f.select :date_type, [['全て', 0],['週報', 1]], selected: params[:date_type] %>
+      <%= f.submit "切替", class: "btn btn-primary", name: nil %>
+    <% end %>
 
     <% if @posts.present? %>
       <% @posts.each do |p|  %>

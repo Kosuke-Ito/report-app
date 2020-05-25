@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
- body{font-family: "Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;}
+ body{font-family: "Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;word-wrap: break-word;}
 .logout_btn, .mypage_btn{margin: 1.5rem 0 1.5rem 1rem;}
 textarea{resize: vertical;}
 div{border-radius: 10px;}
