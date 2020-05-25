@@ -1,6 +1,8 @@
 <div class="container login_container">
 	<h1 class="session-title">日報週報管理</h1>
-	<%= form_for :session, url: login_path, class: 'login_form' do |f| %>
+  <%= form_for @login, url: login_path, class: 'login_form' do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  
 		<div class="form_group">
 			<%= f.text_field :name, class: 'col-md-5 input-group-text name_feild', id: "inputGroup-sizing-lg", maxlength: 10, placeholder: "名前", pattern: "^[a-z0-9]+$", title:"半角英数字で入力して下さい" %>
 		</div>

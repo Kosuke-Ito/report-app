@@ -3,6 +3,8 @@
 	<h2><%= Date.today.strftime('%Y年%m月%d日') %>の投稿を作成する</h2>
 
 	<%= form_for (@post) do |f| %>
+    <%= render 'shared/post_error_messages', object: f.object %>
+
     <%= f.select :date_type, [['ALL', 0],['WEEKLY', 1]], {}, class:"col-md-2 mb-3 mt-4 input-group-text create_date_type_box" %>
 
 		<%= f.text_field :title, class:'col-md-9 input-group-text create_title_field', maxlength:50, placeholder:"タイトル" %>
