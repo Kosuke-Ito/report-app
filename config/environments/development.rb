@@ -12,7 +12,8 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
-  config.hosts << "https://report-app-1.herokuapp.com/"
+  # config.hosts << "report-app-1.herokuapp.com/"
+  config.hosts.clear
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
