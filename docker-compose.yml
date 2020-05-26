@@ -4,8 +4,8 @@ services:
     image: mysql:5.7
     environment:
       TZ: Asia/Tokyo
-      MYSQL_ROOT_PASSWORD: ${ROOTPASS}
-      MYSQL_DATABASE: ${DATABASE}
+      MYSQL_ROOT_PASSWORD: ROOTPASS
+      MYSQL_DATABASE: DATABASE
     ports:
       - "4306:3306"
   web:
