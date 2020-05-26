@@ -16,9 +16,10 @@ default: &default
 
 development:
   <<: *default
-  database: report_app_development
-  username: root
-  password: password
+  url: <%= ENV['DATABASE_URL'] %>
+  database: ROOT
+  username: <%= ENV['DB_USERNAME'] %>
+  password: PASSWORD
   host: db
 
 # Warning: The database defined as "test" will be erased and
