@@ -12,6 +12,8 @@ jobs:
             echo 'export keree.it.owl.uk@gmail.com' >> HEROKU_LOGIN
             echo 'export bdeb8a2e-04ef-42df-946e-1439c5fc46c9' >> HEROKU_AUTH_TOKEN
             echo 'export bdeb8a2e-04ef-42df-946e-1439c5fc46c9' >> HEROKU_API_KEY
+            echo 'export root' >> ROOTPASS
+            echo 'export password' >> DATABASE
       - run:
           name: docker-compose build
           command: docker-compose build
