@@ -14,12 +14,14 @@ services:
     tty: true
     stdin_open: true
     environment:
-      BUNDLE_APP_CONFIG: /app/.bundle
+      RAILS_ENV: development
       TZ: Asia/Tokyo
       RAILS_ENV: development
     volumes:
       - .:/report_app:cached
     ports:
       - "3000:3000"
+    links:
+      - db
     depends_on:
       - db
