@@ -3,14 +3,14 @@ jobs:
   build:
     machine:
       image: circleci/classic:edge
-      environment:
-        - BUNDLE_PATH: vendor/bundle
-        - BUNDLER_VERSION: 2.1.4
-        - RAILS_ENV: 'development'
-    - image: circleci/mysql:5.7
-      environment:
-        - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-        - MYSQL_ROOT_HOST: '127.0.0.1'
+        environment:
+          BUNDLE_PATH: vendor/bundle
+          BUNDLER_VERSION: 2.1.4
+          RAILS_ENV: 'development'
+      image: circleci/mysql:5.7
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          MYSQL_ROOT_HOST: '127.0.0.1'
 
     working_directory: ~/report_app  #自身のアプリディレクトリ名を設定
 
