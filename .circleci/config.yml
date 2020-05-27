@@ -14,7 +14,7 @@ jobs:
       - checkout
       - run:
           name: docker-compose build
-          command: docker-compose build
+          command: sudo docker-compose build
       - run:
           name: docker-compose up
           command: docker-compose up -d
