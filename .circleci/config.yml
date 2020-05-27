@@ -7,8 +7,7 @@ jobs:
         - BUNDLER_VERSION: 2.1.4
         - RAILS_ENV: 'development'
     - image: circleci/mysql:5.7
-      ports:
-        - 4306:3306
+      ports: 4306:3306
       environment:
         - MYSQL_DATABASE: report_app_development
         - MYSQL_ALLOW_EMPTY_PASSWORD: true
