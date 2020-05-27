@@ -1,14 +1,15 @@
 version: 2
 jobs:
   build:
-    machine:
-      - image: circleci/classic:edge
-          environment:
-            RAILS_ENV: development
-            DB_HOST: 127.0.0.1
-            DB_USERNAME: 'root'
-            DB_PASSWORD: ''
-      - image: circleci/mysql:5.6
+    docker:
+    - image: circleci/classic:edge
+      environment:
+        - RAILS_ENV: 'development'
+    - image: circleci/mysql:5.6
+      environment:
+        - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+        - MYSQL_ROOT_HOST: '127.0.0.1'
+
     steps:
       - checkout
       - run:
