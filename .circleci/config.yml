@@ -1,15 +1,16 @@
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
-    - image: circleci/ruby:2.6.5-node-browsers
+    - image: circleci/ruby:2.6.5-node
       environment:
         - BUNDLER_VERSION: 2.1.4
         - RAILS_ENV: 'development'
     - image: circleci/mysql:5.7
       environment:
-        - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-        - MYSQL_HOST: '127.0.0.1'
+        - MYSQL_DATABASE: report_app_development
+        - MYSQL_ALLOW_EMPTY_PASSWORD: true
+        - MYSQL_HOST: '%'
 
     working_directory: ~/report_app  #自身のアプリディレクトリ名を設定
 
