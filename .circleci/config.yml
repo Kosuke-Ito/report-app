@@ -1,63 +1,25 @@
-version: 2.1
+version: 2
 jobs:
   build:
-    docker:
-    - image: circleci/ruby:2.6.5-node
-      environment:
-        - BUNDLER_VERSION: 2.1.4
-        - RAILS_ENV: 'development'
-    - image: circleci/mysql:5.7
-      environment:
-        - MYSQL_DATABASE: report_app_development
-        - MYSQL_ALLOW_EMPTY_PASSWORD: true
-
-    working_directory: ~/report_app  #自身のアプリディレクトリ名を設定
-
-
+    machine:
+      image: circleci/classic:edge
     steps:
-    - checkout
-
-    - restore_cache:
-        keys:
-        - v1-dependencies-{{ checksum "Gemfile.lock" }}
-        - v1-dependencies-
-
-    - run:
-        name: install dependencies
-        command: |
-          gem install bundler -v 2.1.4
-          bundle install --jobs=4 --retry=3 --path vendor/bundle
-
-    - save_cache:
-        paths:
-        - ./vendor/bundle
-        key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-
-    # Database setup
-    - run:
-        name: Databasesetup
-        command: |
-           bundle exec rake db:create
-           bundle exec rake db:schema:load
-
-    # run tests!
-    - run:
-        name: Run rspec
-        command: |
-          mkdir /tmp/test-results
-          TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-            circleci tests split --split-by=timings)"
-
-          bundle exec rspec \
-            --format progress \
-            --format RspecJunitFormatter \
-            --out /tmp/test-results/rspec.xml \
-            --format progress \
-            $TEST_FILES
-
-    # collect reports
-    - store_test_results:
-        path: /tmp/test-results
-    - store_artifacts:
-        path: /tmp/test-results
-        destination: test-results
+      - checkout
+      - run:
+          name: docker-compose build
+          command: docker-compose build
+      - run:
+          name: docker-compose up
+          command: docker-compose up -d
+      - run:
+          name: sleep for waiting launch db
+          command: sleep 1
+      - run:
+          name: "before_test: setup db"
+          command: docker-compose run web rails db:create db:migrate
+      - run:
+          name: test
+          command: docker-compose run web rails test
+      - run:
+          name: docker-compose down
+          command: docker-compose down
