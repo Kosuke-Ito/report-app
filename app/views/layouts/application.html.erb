@@ -8,7 +8,6 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
@@ -19,7 +18,7 @@
             <% unless request.path == root_path || request.path == users_path %>
               <span><%= link_to "マイページ", root_path, class: "btn btn-outline-info mypage_btn" %></span>
             <% end %>
-            <span><%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-outline-danger logout_btn" %></span>
+            <span><%= link_to "ログアウト", logout_path, class: "btn btn-outline-danger logout_btn" %></span>
           <% end %>
         </div>
       </div>
