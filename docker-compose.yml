@@ -12,7 +12,6 @@ services:
   web:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    command: command: './node_modules/.bin/webpack-dev-server --config config/webpack/development --host 0.0.0.0 --port 3035'
     tty: true
     stdin_open: true
     environment:
