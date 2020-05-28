@@ -23,6 +23,7 @@ WORKDIR /report_app
 COPY Gemfile /report_app/Gemfile
 COPY Gemfile.lock /report_app/Gemfile.lock
 RUN bundle install
+RUN bundle exec rails webpacker:install
 COPY . /report_app
 
 # Add a script to be executed every time the container starts.
