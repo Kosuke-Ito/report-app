@@ -59,6 +59,9 @@ jobs:
            bundle exec rake db:create
            bundle exec rake db:schema:load
 
+    # webpacker install
+    - run: bundle exec rails webpacker:install to install Webpacker
+    
     # Build JavaScript files
     - run:
         name: webpackerをbuild
