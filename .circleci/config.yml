@@ -43,6 +43,9 @@ jobs:
            bundle exec rake db:create
            bundle exec rake db:schema:load
 
+    # Build JavaScript files
+    - run: bundle exec bin/webpack
+    
     # run test
     - run:
         name: Run rspec
