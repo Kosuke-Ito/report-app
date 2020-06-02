@@ -25,7 +25,7 @@ services:
 
   webpack:
     <<: *app_base
-    command: bash -c "rm -rf /app/public/packs; /app/bin/webpack-dev-server"
+    command: /bin/sh -c "docker/wait-for-it.sh app:3000 --timeout=600 && bundle install && yarn install --check-files && bin/webpack-dev-server"
     ports:
       - "3035:3035"
     depends_on:
