@@ -1,22 +1,19 @@
 default: &default
   adapter: mysql2
-  host: db
+  encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password: password
-  timeout: 5000
+  password: password # docker-compose.ymlのMYSQL_ROOT_PASSWORD
+  host: db # docker-compose.ymlのservice名
 
 development:
   <<: *default
-  database: app_development
+  database: report_app_development
 
 test:
   <<: *default
-  database: app_test
+  database: report_app_test
 
 production:
   <<: *default
-  host: <%= ENV['HOST'] %>
-  database: app_production
-  username: username
-  password: <%= ENV['PASSWORD'] %>
+  database: report_app_production
