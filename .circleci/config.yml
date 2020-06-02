@@ -52,16 +52,17 @@ jobs:
     # Database setup
     - run: mv ./config/database.yml.ci ./config/database.yml
 
-    # Database setup
-    - run:
-        name: Databasesetup
-        command: |
-           bundle exec rake db:create
-           bundle exec rake db:schema:load
+     - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://127.0.0.1 -timeout 1m
 
+    - run:
+        name: Database setup
+        command: bin/rails db:create db:schema:load --trace
+        
     # webpacker install
     - run: bundle exec rails webpacker:install to install Webpacker
-    
+
     # Build JavaScript files
     - run:
         name: webpackerをbuild
