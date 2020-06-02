@@ -60,12 +60,12 @@ jobs:
         name: Database setup
         command: bin/rails db:create db:schema:load --trace
 
-    # webpacker install
-    - run: bundle exec rails webpacker:install to install Webpacker
+    # # webpacker install
+    # - run: bundle exec rails webpacker:install to install Webpacker
 
     # Build JavaScript files
     - run:
-        name: webpackerをbuild
+        name: webpacker build
         command: bundle exec bin/webpack
 
     # run test
