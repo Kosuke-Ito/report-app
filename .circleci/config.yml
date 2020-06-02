@@ -62,7 +62,7 @@ jobs:
            bundle exec rake db:schema:load
 
     # Build JavaScript files
-    - run: bundle exec bin/webpack
+    - run: bundle exec bin/webpack-dev-server
 
     # run test
     - run:
