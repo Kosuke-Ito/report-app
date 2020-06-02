@@ -1,17 +1,17 @@
 version: 2
 jobs:
   build:
-      docker:
-      - image: circleci/ruby:2.6.5-node-browsers
-        environment:
-          - BUNDLER_VERSION: 2.0.2
-          - RAILS_ENV: 'test'
-      - image: circleci/mysql:5.7
-        environment:
-          - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-          - MYSQL_ROOT_HOST: '127.0.0.1'
+    docker:
+    - image: circleci/ruby:2.6.5-node-browsers
+      environment:
+        - BUNDLER_VERSION: 2.0.2
+        - RAILS_ENV: 'test'
+    - image: circleci/mysql:5.7
+      environment:
+        - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+        - MYSQL_ROOT_HOST: '127.0.0.1'
 
-      working_directory: ~/sample_app  #自身のアプリディレクトリ名を設定
+    working_directory: ~/sample_app  #自身のアプリディレクトリ名を設定
 
 
     steps:
@@ -52,7 +52,7 @@ jobs:
     # Database setup
     - run: mv ./config/database.yml.ci ./config/database.yml
 
-     - run:
+    - run:
         name: Wait for DB
         command: dockerize -wait tcp://127.0.0.1:5432 -timeout 1m
 
