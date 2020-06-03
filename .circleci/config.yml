@@ -30,24 +30,24 @@ jobs:
           name: "before_test: setup db"
           command: docker-compose run web rails db:create db:migrate
       # run test
-      - run:
-          name: Run rspec
-          command: |
-            docker-compose run web mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-              circleci tests split --split-by=timings)"
-
-            docker-compose run web bundle exec rspec \
-              --format progress \
-              --out /tmp/test-results/rspec.xml \
-              --format progress \
-              $TEST_FILES
+      # - run:
+      #     name: Run rspec
+      #     command: |
+      #       docker-compose run web mkdir /tmp/test-results
+      #       TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+      #         circleci tests split --split-by=timings)"
+      #
+      #       docker-compose run web bundle exec rspec \
+      #         --format progress \
+      #         --out /tmp/test-results/rspec.xml \
+      #         --format progress \
+      #         $TEST_FILES
       # collect reports
-      - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
+      # - store_test_results:
+      #     path: /tmp/test-results
+      # - store_artifacts:
+      #     path: /tmp/test-results
+      #     destination: test-results
 
       - run:
           name: docker-compose down
