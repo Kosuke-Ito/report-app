@@ -3,6 +3,7 @@ services:
   db:
     image: mysql:5.7
     environment:
+      RAILS_ENV: 'production'
       MYSQL_DATABASE: root
       MYSQL_ROOT_PASSWORD: password
       TZ: Asia/Tokyo
