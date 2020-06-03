@@ -1,13 +1,16 @@
 version: 2
 jobs:
   build:
-    machine:
-      image: circleci/classic:edge
-      environment:
-        RAILS_ENV: test
-        DB_HOST: 127.0.0.1
-        DB_USERNAME: 'root'
-        DB_PASSWORD: 'password'
+    docker:
+     - image: circleci/ruby:2.6.5
+       environment:
+         RAILS_ENV: test
+         DB_HOST: 127.0.0.1
+         DB_USERNAME: 'root'
+         DB_PASSWORD: ''
+     - image: circleci/mysql:5.7
+       environment:
+         MYSQL_ALLOW_EMPTY_PASSWORD: yes
     steps:
       - checkout
       # - setup_remote_docker
