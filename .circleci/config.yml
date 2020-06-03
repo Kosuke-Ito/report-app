@@ -5,7 +5,7 @@ jobs:
       image: circleci/classic:edge
     steps:
       - checkout
-       - run:
+      - run:
           name: docker-compose build
           command: docker-compose build
       - run:
@@ -38,8 +38,8 @@ jobs:
           destination: test-results
 
       - run:
-      name: docker-compose down
-      command: docker-compose down
+          name: docker-compose down
+          command: docker-compose down
 
     deploy:
       machine:
