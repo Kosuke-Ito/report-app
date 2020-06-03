@@ -3,6 +3,11 @@ jobs:
   build:
     machine:
       image: circleci/classic:edge
+      environment:
+          MYSQL_DATABASE: root
+          MYSQL_ROOT_PASSWORD: password
+          RAILS_ENV: production
+          RACK_ENV: production
     steps:
       - checkout
       # - setup_remote_docker
