@@ -33,7 +33,9 @@ jobs:
 
       - run:
           name: "before_test: setup db"
-          command: docker-compose run web rails db:create db:migrate
+          command: |
+          docker-compose run web rails db:create RAILS_ENV=production
+          docker-compose run web rails db:migrate RAILS_ENV=production
       # run test
       # - run:
       #     name: Run rspec
