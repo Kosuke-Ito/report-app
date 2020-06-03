@@ -4,7 +4,7 @@ jobs:
     machine:
       image: circleci/classic:edge
       environment:
-        RAILS_ENV: production
+        RAILS_ENV: test
         DB_HOST: 127.0.0.1
         DB_USERNAME: 'root'
         DB_PASSWORD: 'password'
@@ -32,11 +32,11 @@ jobs:
 
       - run:
           name: "create db"
-          command: docker-compose run web rails db:create RAILS_ENV=production
+          command: docker-compose run web rails db:create RAILS_ENV=test
 
       - run:
           name: "migrate db"
-          command: docker-compose run web rails db:migrate RAILS_ENV=production
+          command: docker-compose run web rails db:migrate RAILS_ENV=test
       # run test
       # - run:
       #     name: Run rspec
