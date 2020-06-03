@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     machine:
-      - image: circleci/classic:edge
+      - image: circleci/ruby:2.6.5
         environment:
           RAILS_ENV: production
           DB_HOST: 127.0.0.1
@@ -88,7 +88,7 @@ jobs:
       - run:
           name: heroku maintenance off
           command: heroku maintenance:off --app ${HEROKU_APP_NAME}
-          
+
 workflows:
   version: 2
   build_and_deploy:
