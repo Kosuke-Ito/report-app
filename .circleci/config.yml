@@ -3,13 +3,14 @@ jobs:
   build:
     docker:
      - image: circleci/ruby:2.6.5
-       # environment:
-       #   RAILS_ENV: test
-       #   DB_HOST: 127.0.0.1
-       #   DB_USERNAME: 'root'
-       #   DB_PASSWORD: ''
+       environment:
+         RAILS_ENV: test
+         DB_HOST: 127.0.0.1
+         DB_USERNAME: 'root'
+         DB_PASSWORD: ''
      - image: circleci/mysql:5.7
        environment:
+         PORT: 3306
          MYSQL_ALLOW_EMPTY_PASSWORD: yes
     steps:
       - checkout
