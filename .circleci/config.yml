@@ -3,11 +3,11 @@ jobs:
   build:
     docker:
      - image: circleci/ruby:2.6.5
-       environment:
-         RAILS_ENV: test
-         DB_HOST: 127.0.0.1
-         DB_USERNAME: 'root'
-         DB_PASSWORD: ''
+       # environment:
+       #   RAILS_ENV: test
+       #   DB_HOST: 127.0.0.1
+       #   DB_USERNAME: 'root'
+       #   DB_PASSWORD: ''
      - image: circleci/mysql:5.7
        environment:
          MYSQL_ALLOW_EMPTY_PASSWORD: yes
@@ -23,7 +23,7 @@ jobs:
 
       - run:
           name: docker-compose build
-          command: sudo docker-compose build
+          command: docker-compose build
 
       - run:
           name: docker-compose up
