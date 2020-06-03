@@ -1,18 +1,16 @@
 version: 2
 jobs:
   build:
-    machine:
-      image: circleci/classic:edge
+    docker:
+      image: circleci/ruby-2.6.5
       environment:
         RAILS_ENV: production
         DB_HOST: 127.0.0.1
         DB_USERNAME: 'root'
         DB_PASSWORD: ''
-    docker:
       image: circleci/mysql:5.7
     steps:
       - checkout
-      # - setup_remote_docker
 
       - run:
           name: Docker Compose をインストール
