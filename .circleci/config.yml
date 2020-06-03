@@ -8,6 +8,8 @@ jobs:
         DB_HOST: 127.0.0.1
         DB_USERNAME: 'root'
         DB_PASSWORD: ''
+    docker:
+      image: circleci/mysql:5.7
     steps:
       - checkout
       # - setup_remote_docker
@@ -33,7 +35,7 @@ jobs:
 
       - run:
           name: "create db"
-          command: docker-compose run web rails db:create RAILS_ENV=production \
+          command: docker-compose run web rails db:create RAILS_ENV=production
 
       - run:
           name: "migrate db"
