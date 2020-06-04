@@ -16,12 +16,33 @@ jobs:
             - gem-cache
 
       - run:
+          name: pwd
+          command: pwd
+      - run:
+          name: ls
+          command: ls
+
+      - run:
           name: docker-compose build
           command: docker-compose build
 
       - run:
+          name: pwd
+          command: pwd
+      - run:
+          name: ls
+          command: ls
+
+      - run:
           name: docker-compose up
           command: docker-compose up -d
+
+      - run:
+          name: pwd
+          command: pwd
+      - run:
+          name: ls
+          command: ls
 
       # bundle installのデータをキャッシュ
       - save_cache:
@@ -30,8 +51,22 @@ jobs:
             - ./report_app/vendor/bundle
 
       - run:
+          name: pwd
+          command: pwd
+      - run:
+          name: ls
+          command: ls
+
+      - run:
           name: sleep for waiting launch db
           command: sleep 1
+
+      - run:
+          name: pwd
+          command: pwd
+      - run:
+          name: ls
+          command: ls
 
       - run:
           name: "create db"
@@ -40,6 +75,13 @@ jobs:
       - run:
           name: "migrate db"
           command: docker-compose run web rails db:migrate RAILS_ENV=${RAILS_ENV}
+
+      - run:
+          name: pwd
+          command: pwd
+      - run:
+          name: ls
+          command: ls
       # run test
       # - run:
       #     name: Run rspec
