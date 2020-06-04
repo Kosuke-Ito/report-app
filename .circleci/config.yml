@@ -18,9 +18,9 @@ jobs:
 
       # bundle installのデータをキャッシュ
       - save_cache:
-          key: gem-cache-{{ checksum "./app/Gemfile.lock" }}
+          key: gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
-            - ./app/vendor/bundle
+            - ./vendor/bundle
 
       - run:
           name: sleep for waiting launch db
