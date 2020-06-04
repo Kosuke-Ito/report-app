@@ -3,7 +3,9 @@ jobs:
   build:
     machine:
      image: circleci/classic:edge
-     environment: production
+     environment:
+       RAILS_ENV: production
+       SECRET_KEY_BASE: 12f0bc83c26f3fc99bbffa261257b670a5be72ff47bd65802372c5728f762bb1c58159cf6fcb94010c7423fd6e9292a894681f3c21eb41f78399e981b474dc5f
     steps:
       - checkout
       - run:
@@ -20,11 +22,11 @@ jobs:
 
       - run:
           name: "create db"
-          command: docker-compose run web rails db:create
+          command: docker-compose run web rails db:create ${RAILS_ENV}
 
       - run:
           name: "migrate db"
-          command: docker-compose run web rails db:migrate
+          command: docker-compose run web rails db:migrate ${RAILS_ENV}
       # run test
       # - run:
       #     name: Run rspec
