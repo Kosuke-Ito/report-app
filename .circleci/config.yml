@@ -6,6 +6,13 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Docker Compose をインストール
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+
+      - run:
           name: docker-compose build
           command: docker-compose build
 
@@ -18,7 +25,7 @@ jobs:
           command: sleep 2
 
       - run:
-          name: rails db:create and db:migrate
+          name: docker-compose up -d
           command: docker-compose run web rails db:create db:migrate
       # run test
       # - run:
