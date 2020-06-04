@@ -1,6 +1,7 @@
 version: 2
 jobs:
   build:
+    working_directry: ~/report_app
     machine:
      image: circleci/classic:edge
     steps:
@@ -37,7 +38,7 @@ jobs:
           key: gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - ./report_app/vendor/bundle
-            
+
       - run:
           name: docker-compose run
           command: docker-compose run web -e SECRET_KEY_BASE=${SECRET_KEY_BASE}
