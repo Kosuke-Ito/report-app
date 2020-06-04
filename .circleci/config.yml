@@ -4,11 +4,8 @@ jobs:
     machine:
      image: circleci/classic:edge
      environment:
-       # RAILS_ENV: test
+       RAILS_ENV: test
        DB_HOST: 127.0.0.1
-       DB_USERNAME: 'root'
-       DB_PASSWORD: 'password'
-
     steps:
       - checkout
       # - setup_remote_docker
@@ -28,8 +25,14 @@ jobs:
           command: docker-compose up -d
 
       - run:
-          name: sleep for waiting launch db
-          command: sleep 1
+          name: dockerize をインストール
+          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.3.0
+
+      - run:
+          name: db を待機
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
 
       - run:
           name: "create db"
