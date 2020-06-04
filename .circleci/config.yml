@@ -11,7 +11,7 @@ jobs:
       # 複数のキャッシュを作ってキャッシュヒットしやすくします
       - restore_cache:
           keys:
-            - gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "./report_app/Gemfile.lock" }}
+            - gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
             - gem-cache-{{ arch }}-{{ .Branch }}
             - gem-cache
 
@@ -35,7 +35,7 @@ jobs:
 
       - run:
           name: docker-compose up
-          command: docker-compose up -d
+          command: docker-compose up -d SECRET_KEY_BASE=${SECRET_KEY_BASE}
 
       - run:
           name: pwd
@@ -46,7 +46,7 @@ jobs:
 
       # bundle installのデータをキャッシュ
       - save_cache:
-          key: gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "./report_app/Gemfile.lock" }}
+          key: gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - ./report_app/vendor/bundle
 
