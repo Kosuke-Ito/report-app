@@ -3,6 +3,8 @@ jobs:
   build:
     machine:
      image: circleci/classic:edge
+     environment:
+       DB_HOST: 127.0.0.1
     steps:
       - checkout
       - run:
