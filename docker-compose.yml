@@ -3,8 +3,8 @@ services:
   db:
     image: circleci/mysql:5.7
     environment:
-      - SECRET_KEY_BASE: $SECRET_KEY_BASE
-      - TZ: "Asia/Tokyo"
+      - SECRET_KEY_BASE=$SECRET_KEY_BASE
+      - TZ="Asia/Tokyo"
     ports:
       - "4306:3306"
 
