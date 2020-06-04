@@ -5,7 +5,7 @@ services:
     environment:
       - MYSQL_DATABASE=root
       - MYSQL_ROOT_PASSWORD=password
-      - SECRET_KEY_BASE=$SECRET_KEY_BASE
+      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
       - TZ=Asia/Tokyo
     ports:
       - "4306:3306"
