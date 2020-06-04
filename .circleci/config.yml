@@ -3,6 +3,7 @@ jobs:
   build:
     machine:
      image: circleci/classic:edge
+     environment: production
     steps:
       - checkout
       - run:
