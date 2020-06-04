@@ -37,7 +37,7 @@ jobs:
       - save_cache:
           key: gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
-            - ./report_app/vendor/bundle
+            - vendor/bundle
 
       - run:
           name: pwd
@@ -67,6 +67,10 @@ jobs:
       - run:
           name: ls
           command: ls
+
+      - run:
+          name: "create db"
+          command: docker-compose run web -e SECRET_KEY_BASE=${SECRET_KEY_BASE}
 
       - run:
           name: "create db"
