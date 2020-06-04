@@ -3,8 +3,10 @@ services:
   db:
     image: circleci/mysql:5.7
     environment:
+      - MYSQL_DATABASE=root
+      - MYSQL_ROOT_PASSWORD=password
       - SECRET_KEY_BASE=$SECRET_KEY_BASE
-      - TZ="Asia/Tokyo"
+      - TZ=Asia/Tokyo
     ports:
       - "4306:3306"
 
