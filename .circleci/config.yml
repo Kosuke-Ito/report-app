@@ -3,9 +3,6 @@ jobs:
   build:
     machine:
      image: circleci/classic:edge
-     environment:
-       RAILS_ENV: production
-       SECRET_KEY_BASE: ${SECRET_KEY_BASE}
     steps:
       - checkout
       # Bundlerの実行
@@ -30,6 +27,10 @@ jobs:
           command: docker-compose build
 
       - run:
+          name: docker-compose run
+          command: docker-compose run -e SECRET_KEY_BASE=${SECRET_KEY_BASE}
+
+      - run:
           name: pwd
           command: pwd
       - run:
@@ -38,7 +39,7 @@ jobs:
 
       - run:
           name: docker-compose up
-          command: docker-compose up -d SECRET_KEY_BASE=${SECRET_KEY_BASE}
+          command: docker-compose up -d
 
       - run:
           name: pwd
