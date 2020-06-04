@@ -70,9 +70,9 @@ jobs:
 
       - run:
           name: "eviroment variable"
-          command:
-            - docker-compose run web -e RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
-            - docker-compose run web echo $RAILS_MASTER_KEY
+          command: |
+            docker-compose run web -e RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+            docker-compose run web echo $RAILS_MASTER_KEY
 
       - run:
           name: "create db"
