@@ -22,11 +22,15 @@ jobs:
 
       - run:
           name: sleep for waiting launch db
-          command: sleep 2
+          command: sleep 1
 
       - run:
-          name: docker-compose up -d
-          command: docker-compose run web rails db:create db:migrate
+          name: "create db"
+          command: docker-compose run web rails db:create
+
+      - run:
+          name: "migrate db"
+          command: docker-compose run web rails db:migrate
       # run test
       # - run:
       #     name: Run rspec
