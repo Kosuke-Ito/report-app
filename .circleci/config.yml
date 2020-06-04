@@ -3,6 +3,9 @@ jobs:
   build:
     machine:
      image: circleci/classic:edge
+     environment:
+       RAILS_ENV: production
+       SECRET_KEY_BASE: ${SECRET_KEY_BASE}
     steps:
       - checkout
       # Bundlerの実行
