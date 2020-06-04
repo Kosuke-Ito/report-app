@@ -69,14 +69,8 @@ jobs:
           command: ls
 
       - run:
-          name: "eviroment variable"
-          command: |
-            docker-compose run web -e RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
-            docker-compose run web echo $RAILS_MASTER_KEY
-
-      - run:
           name: "create db"
-          command: docker-compose run web rails db:create RAILS_ENV=${RAILS_ENV}
+          command: docker-compose run -e RAILS_MASTER_KEY=${RAILS_MASTER_KEY} web rails db:create RAILS_ENV=${RAILS_ENV}
 
       - run:
           name: "migrate db"
