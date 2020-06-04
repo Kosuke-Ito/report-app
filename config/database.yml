@@ -4,18 +4,22 @@ default: &default
   collation: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password: password # docker-compose.ymlのMYSQL_ROOT_PASSWORD
   host: db # docker-compose.ymlのservice名
   port: 3306
 
 development:
   <<: *default
   database: report_app_development
+  password: password # docker-compose.ymlのMYSQL_ROOT_PASSWORD
+
 
 test:
   <<: *default
   database: report_app_test
+  password: password # docker-compose.ymlのMYSQL_ROOT_PASSWORD
+
 
 production:
   <<: *default
   database: report_app_production
+  password: ''
