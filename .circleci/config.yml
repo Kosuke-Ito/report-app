@@ -25,22 +25,6 @@ jobs:
       - run:
           name: docker-compose build
           command: docker-compose build
-
-      - run:
-          name: docker-compose run
-          command: docker-compose run -e SECRET_KEY_BASE=${SECRET_KEY_BASE}
-
-      - run:
-          name: pwd
-          command: pwd
-      - run:
-          name: ls
-          command: ls
-
-      - run:
-          name: docker-compose up
-          command: docker-compose up -d
-
       - run:
           name: pwd
           command: pwd
@@ -53,6 +37,21 @@ jobs:
           key: gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - ./report_app/vendor/bundle
+            
+      - run:
+          name: docker-compose run
+          command: docker-compose run web -e SECRET_KEY_BASE=${SECRET_KEY_BASE}
+
+      - run:
+          name: pwd
+          command: pwd
+      - run:
+          name: ls
+          command: ls
+
+      - run:
+          name: docker-compose up
+          command: docker-compose up -d
 
       - run:
           name: pwd
