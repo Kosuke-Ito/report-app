@@ -16,17 +16,23 @@ jobs:
           name: docker-compose up
           command: docker-compose up -d
 
+      # bundle installのデータをキャッシュ
+      - save_cache:
+          key: gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "./Gemfile.lock" }}
+          paths:
+            - ./app/vendor/bundle
+
       - run:
           name: sleep for waiting launch db
           command: sleep 1
 
       - run:
           name: "create db"
-          command: docker-compose run web rails db:create ${RAILS_ENV}
+          command: docker-compose run web rails db:create RAILS_ENV=${RAILS_ENV}
 
       - run:
           name: "migrate db"
-          command: docker-compose run web rails db:migrate ${RAILS_ENV}
+          command: docker-compose run web rails db:migrate RAILS_ENV=${RAILS_ENV}
       # run test
       # - run:
       #     name: Run rspec
