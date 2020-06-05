@@ -17,21 +17,8 @@ jobs:
             - gem-cache
 
       - run:
-          name: pwd
-          command: pwd
-      - run:
-          name: ls
-          command: ls
-
-      - run:
           name: docker-compose build
           command: docker-compose build
-      - run:
-          name: pwd
-          command: pwd
-      - run:
-          name: ls
-          command: ls
 
       # bundle installのデータをキャッシュ
       - save_cache:
@@ -40,33 +27,12 @@ jobs:
             - vendor/bundle
 
       - run:
-          name: pwd
-          command: pwd
-      - run:
-          name: ls
-          command: ls
-
-      - run:
           name: docker-compose up
           command: docker-compose up -d
 
       - run:
-          name: pwd
-          command: pwd
-      - run:
-          name: ls
-          command: ls
-
-      - run:
           name: sleep for waiting launch db
           command: sleep 1
-
-      - run:
-          name: pwd
-          command: pwd
-      - run:
-          name: ls
-          command: ls
 
       - run:
           name: "create db"

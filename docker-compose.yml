@@ -1,32 +1,31 @@
 version: '2'
 services:
   db:
-    image: circleci/mysql:5.7
+    image: mysql:5.7
     environment:
       MYSQL_DATABASE: root
       MYSQL_ROOT_PASSWORD: password
-      RAILS_MASTER_KEY: $RAILS_MASTER_KEY
       TZ: Asia/Tokyo
     ports:
       - "4306:3306"
 
   web: &app_base
     build: .
-    command:
-      - /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    # docker-compose downで終了するたびにDBの中身が消えてしまうのでvolumesを使ってローカルに永続化
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    tty: true
+    stdin_open: true
+    environment:
+      RAILS_ENV: development
     volumes:
       - .:/report_app
     ports:
       - "3000:3000"
-    depends_on:
+    links:
       - db
-    tty: true
-    stdin_open: true
 
   webpack:
     <<: *app_base
-    command: /bin/sh -c "docker/wait-for-it.sh app:3000 --timeout=600 && bundle install && yarn install --check-files && bin/webpack-dev-server"
+    command: bash -c "rm -rf /app/public/packs; /app/bin/webpack-dev-server"
     ports:
       - "3035:3035"
     depends_on:
