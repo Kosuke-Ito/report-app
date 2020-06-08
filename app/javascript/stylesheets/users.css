@@ -10,7 +10,7 @@
 .mono_post{border: solid 1px #999;border-radius: 10px;height: 10rem;margin-bottom: 1rem;padding: 1rem 1rem 0;}
 .session_container{text-align: center;}
 .signup_form{display: inline-block;}
-.name_field, .password_field, .password_confirmation_field{display: block;width: 20rem;margin-bottom: 1rem;}
+.name_field, .password_field, .password_confirmation_field{display: block!important;width: 20rem;margin-bottom: 1rem;}
 .admin_label{width:8rem;height: 3rem;background-color: purple;color:white;margin: 0 auto;text-align: center;padding-top: .8rem}
 .boss_box, .subordinate_box{text-align: center;font-size: 1.5rem;}
 .subordinate_box{margin-top: 3rem;}
@@ -21,3 +21,6 @@
 #admin_flag{height: 2.5rem;}
 .post-title{margin: 0;width: 80%;display: inline-block;}
 .edit-btn{margin-top: 0.5rem; }
+.user-new-btn{padding: 1rem 2rem; font-size: 1.1rem;}
+.col-title{padding-left: 0;}
+.field_with_errors{margin: 1rem;}

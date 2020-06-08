@@ -7,7 +7,7 @@
 
 	<%= form_for (@post) do |f| %>
     <%= render 'shared/post_error_messages', object: f.object %>
-    <%= f.select :date_type, [['ALL', false],['WEEKLY', true]], {selected: @post.date_type}, class:"col-md-2 mb-3 mt-4 input-group-text create_date_type_box" %>
+    <%= f.select :date_type, [['日報', false],['週報', true]], {selected: @post.date_type}, class:"col-md-2 mb-3 mt-4 input-group-text create_date_type_box" %>
 
 		<div class="form_group">
 			<%= f.label :title, 'タイトル', class:'title_label' %>
