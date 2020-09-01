@@ -13,9 +13,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     if params[:date_type] == "1"
-      @posts = @user.posts.where(date_type: 1)
+      @posts = @user.posts.where(date_type: 1).order(created_at: :desc)
     else
-      @posts = @user.posts
+      @posts = @user.posts.order(created_at: :desc)
     end
     @boss = User.find_by(id: @user.boss_id) if @user.boss_id.present?
     @subordinate = User.where(id: @user.subordinate_id) if @user.subordinate_id.present?

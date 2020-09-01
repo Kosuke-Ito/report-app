@@ -1,5 +1,8 @@
 <div class="container">
-  <h1>マイページ</h1>
+  <h1 style="display:inline-block;">マイページ</h1>
+  <% if current_user.admin_flag == true %>
+    <span class="admin_label">管理者</span>
+  <% end %>
   <% if logged_in? %>
     <%= render 'users/logged_in' %>
   <% else %>

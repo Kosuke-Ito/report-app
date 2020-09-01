@@ -41,10 +41,6 @@
 
 
     <div class="col-md-3">
-      <% if current_user.admin_flag == true %>
-        <div class="admin_label">管理者</div>
-      <% end %>
-
       <% if current_user.subordinate_id.present? %>
         <div class="subordinate_box">
           後輩一覧

@@ -11,11 +11,11 @@
 .session_container{text-align: center;}
 .signup_form{display: inline-block;}
 .name_field, .password_field, .password_confirmation_field{display: block!important;width: 20rem;margin-bottom: 1rem;}
-.admin_label{width:8rem;height: 3rem;background-color: purple;color:white;margin: 0 auto;text-align: center;padding-top: .8rem}
+.admin_label{color: purple;vertical-align: super;font-size: 1.5rem;}
 .boss_box, .subordinate_box{text-align: center;font-size: 1.5rem;}
 .subordinate_box{margin-top: 3rem;}
 .post-date{margin-bottom: 1rem;}
-.post-status{padding: 0.6rem 1.3rem; border-radius: 5px;}
+.post-status{padding: 0.6rem 1.3rem;}
 .bg-success, .bg-danger{padding: 0.6rem 2.2rem}
 .post-title{margin-top: 1rem;}
 #admin_flag{height: 2.5rem;}

@@ -9,19 +9,18 @@
     <% if @posts.present? %>
       <% @posts.each do |p|  %>
         <div class="mono_post">
-          <%= link_to post_path(p) do %>
-            <div class="row">
-              <p style="color:gray;display:inline-block;margin-left:1rem;"><%= p.created_at.strftime('%Y/%m/%d') %></p>
-                <% if p.status == 0 %>
-                  <span class="col-md-2 offset-md-8 bg-info text-white post-status text-center">承認待ち</span>
-                <% elsif p.status == 1 %>
-                  <span class="col-md-2 offset-md-8 bg-success text-white post-status text-center">公開</span>
-                <% else %>
-                  <span class="col-md-2 offset-md-8 bg-danger text-white post-status text-center">却下</span>
-                <% end %>
-            </div>
-            <h5 style="color:gray"><%= p.title %></h5>
-          <% end %>
+          <div class="row justify-content-between"">
+            <p style="color:gray;display:inline-block;"><%= p.created_at.strftime('%Y/%m/%d') %></p>
+            <% if p.status == 0 
+              post_status = "承認待ち"
+            elsif p.status == 1
+              post_status = "公開済み"
+            else 
+              post_status = "却下"
+            end %>
+            <span class="col-md-2 text-info font-weight-bold post-status text-center"><%= post_status %></span>
+          </div>
+          <h5 style="color:gray"><%= link_to "#{p.title}" ,post_path(p), style:"color:gray;" %></h5>
         </div>
       <% end %>
     <% end %>
@@ -33,15 +32,15 @@
         <div class="boss_box">上司：<span><%= @boss.name %></span></div>
       <% else %>
         <% if current_user.admin_flag == true %>
-         <div class="boss_search">
+          <div class="boss_search">
             <%= form_with url: users_boss_search_path, method: :get, class: "boss_search_form" do |f| %>
               <%= f.text_field :name, placeholder: "上司を検索", class: "boss_search_field", maxlength:10, pattern: "^[a-z]+$", title:"半角英数字で入力して下さい"  %>
               <%= f.hidden_field :user_id, :value => @user.id %>
               <%= f.submit "候補者を表示", class: "btn btn-primary", name: nil %>
             <% end %>
-         </div>
-         <div class="result"></div>
-       <% end %>
+          </div>
+          <div class="result"></div>
+        <% end %>
       <% end %>
     </div>
     <% if @user.subordinate_id.present? %>
