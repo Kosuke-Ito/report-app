@@ -16,9 +16,15 @@ services:
     stdin_open: true
     environment:
       RAILS_ENV: development
+      REDIS_URL: redis://redis:6379
     volumes:
       - .:/report_app
     ports:
       - "3000:3000"
     depends_on:
       - db
+  
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
