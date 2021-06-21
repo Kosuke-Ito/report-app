@@ -13,7 +13,7 @@ RUN mkdir /report_app
 WORKDIR /report_app
 
 COPY Gemfile /report_app/Gemfile
-COPY Gemfile.lock /report_app/Gemfile.lock
+# COPY Gemfile.lock /report_app/Gemfile.lock
 RUN bundle install --path vendor/bundle --jobs=4
 COPY . /report_app
 
