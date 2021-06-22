@@ -12,6 +12,5 @@ require("@rails/ujs").start()
 require("jquery")
 // require("@rails/activestorage").start()
 // require("channels")
-
 //= require jquery
 //= require rails-ujs
