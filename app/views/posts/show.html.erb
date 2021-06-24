@@ -5,7 +5,7 @@
     <%= link_to "＜　一覧に戻る", "/users/#{@user.id}", class: "btn btn-outline-primary back_btn" %>
   <% end %>
   <div class="row">
-    <h1 style="margin-bottom:3rem;padding:0;"><%= @user.name %>の<%=  @post.created_at.strftime('%Y/%m/%d')  %>の投稿</h1>
+    <p style="margin-bottom:0.1rem;padding:0 0 0 0.1rem;"><%= @user.name %></p>
     <% if current_user.id == @user.boss_id %>
       <%= form_with url: '/posts/update_post_status', local: true, class: "change_post_status col-md-4 offset-md-2" do |f| %>
         <%= f.select :status, [['承認待ち', 0],['公開', 1],['却下', 2]], selected: @post.status %>
@@ -14,9 +14,9 @@
       <% end %>
     <% end %>
   </div>
-  <h3 class="post_title">タイトル：<%= @post.title %></h3>
+  <h1 class="post_title"><%= @post.title %> <span>at <%=  @post.created_at.strftime('%Y/%m/%d') %> </span> </h1>
   <hr>
-  <div class="post_content"><%= @post.content %></div>
+  <div class="post_content"><%= markdown(@post.content).html_safe %></div>
   <hr>
   <h2>コメント一覧</h2>
   <% @post.comments.each do |c| %>

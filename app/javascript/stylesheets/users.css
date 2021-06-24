@@ -1,7 +1,7 @@
-#date_type{height: 2.5rem; margin-bottom: 1rem;}
+#date_type{height: 2.5rem;}
 .session_container{margin-top: 10rem;}
 .name_field{ime-mode: disabled!important;}
-.left_column{padding: 0 1rem; margin-bottom: 1rem;}
+.left_column{padding:0; margin-bottom: 1rem;}
 .all_post, .user_search_form{display: inline-block;}
 .user_search_form, .create_btn{margin-top: 2.5rem;}
 .user_search_field{height: 2.7rem}
@@ -11,7 +11,7 @@
 .session_container{text-align: center;}
 .signup_form{display: inline-block;}
 .name_field, .password_field, .password_confirmation_field{display: block!important;width: 20rem;margin-bottom: 1rem;}
-.admin_label{color: purple;vertical-align: super;font-size: 1.5rem;}
+.admin_label{color: purple;font-size: 1.5rem;margin-left:1rem;}
 .boss_box, .subordinate_box{text-align: center;font-size: 1.5rem;}
 .subordinate_box{margin-top: 3rem;}
 .post-date{margin-bottom: 1rem;}

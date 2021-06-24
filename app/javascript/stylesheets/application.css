@@ -17,6 +17,10 @@
 .logout_btn, .mypage_btn{margin: 1.5rem 0 1.5rem 1rem;}
 textarea{resize: vertical;}
 div{border-radius: 10px;}
-.row{padding: 0 1rem;}
-h1{padding: 0 1rem;}
- 
+.row{padding: 0 1rem;margin-bottom: 1rem;}
+h1, h2, h3, h4, h5{font-weight:bold;margin-bottom:1rem;}
+h1{font-size: 1.5rem;}
+h2{font-size: 1.2rem;}
+h3{font-size: 1rem;}
+h4{font-size: 0.8rem;}
+.back_btn{margin-bottom: 1rem;}

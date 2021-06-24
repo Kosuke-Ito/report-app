@@ -1,16 +1,20 @@
 #post_date_type{display: block;}
 #status{height: 2.4rem}
 .create_title_field{height: 3rem;text-align: left;margin-bottom: 1rem;}
-.create_content_field{height: 100rem!important;text-align: left;margin-bottom: 2rem;white-space: normal;}
+.create_content_field{height: 25rem!important;text-align: left;margin-bottom: 2rem;white-space: normal;}
 .create_post_btn{display: block;margin-bottom: 5rem;}
 .comment_field{height: 3rem!important;margin-bottom: 1rem;text-align: left;font-size: 1rem!important;}
 .create_comment_btn{width: 11rem; margin-bottom: 5rem;}
 .mono_comment{margin-bottom: .5rem;}
 .comment_content{font-size: 1.3rem;font-weight: 200;}
-.post_content{margin-bottom: 5rem;white-space: pre-wrap;}
+.post_title{font-weight:normal;}
+.post_title span{font-size:1.1rem;}
+.post_content{margin-bottom: 5rem;}
 .post_date{font-size: 1.5rem;font-weight: bold;margin-bottom: 2rem;}
 .title_label, .content_label{font-size: 1.5rem;font-weight: bold;display: block;}
 .title_feild, .content_field{margin-bottom: 1rem;display: inline-block;font-size: 1rem!important;text-align: left; white-space: normal;}
-.content_field{height: 100rem!important;}
+.content_field{height: 25rem!important;}
 .post_submit_button{margin-bottom: 5rem;height: 3.5rem;}
 .comment-user{font-size: 1.5rem;font-weight: bold;}
+.CodeRay{margin:1rem 0;background-color: #f3f3f3;border-radius:initial;}
+.code{padding: 1rem 1rem .25rem;}
